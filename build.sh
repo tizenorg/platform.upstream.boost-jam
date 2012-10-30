@@ -274,7 +274,7 @@ if test "${BJAM_UPDATE}" != "update" ; then
     echo_run rm -rf bootstrap
     echo_run mkdir bootstrap
     if test ! -r jamgram.y -o ! -r jamgramtab.h ; then
-        echo_run ${BOOST_JAM_CC} ${BOOST_JAM_OPT_YYACC} ${YYACC_SOURCES}
+        echo_run ${BOOST_JAM_CC} ${CFLAGS} ${BOOST_JAM_OPT_YYACC} ${YYACC_SOURCES}
         if test -x "./bootstrap/yyacc0" ; then
             echo_run ./bootstrap/yyacc0 jamgram.y jamgramtab.h jamgram.yy
         fi
@@ -288,12 +288,12 @@ if test "${BJAM_UPDATE}" != "update" ; then
         mv -f y.tab.h jamgram.h
     fi
     if test ! -r jambase.c ; then
-        echo_run ${BOOST_JAM_CC} ${BOOST_JAM_OPT_MKJAMBASE} ${MKJAMBASE_SOURCES}
+        echo_run ${BOOST_JAM_CC} ${CFLAGS} ${BOOST_JAM_OPT_MKJAMBASE} ${MKJAMBASE_SOURCES}
         if test -x "./bootstrap/mkjambase0" ; then
             echo_run ./bootstrap/mkjambase0 jambase.c Jambase
         fi
     fi
-    echo_run ${BOOST_JAM_CC} ${BOOST_JAM_OPT_JAM} ${BJAM_SOURCES}
+    echo_run ${BOOST_JAM_CC} ${CFLAGS} ${BOOST_JAM_OPT_JAM} ${BJAM_SOURCES}
 fi
 if test -x "./bootstrap/jam0" ; then
     if test "${BJAM_UPDATE}" != "update" ; then
