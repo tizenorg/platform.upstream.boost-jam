@@ -12,7 +12,7 @@ BOOST_JAM_TOOLSET=
 echo_run ()
 {
     echo "$@"
-    $@
+    eval "$@"
     r=$?
     if test $r -ne 0 ; then
         exit $r
@@ -299,5 +299,9 @@ if test -x "./bootstrap/jam0" ; then
     if test "${BJAM_UPDATE}" != "update" ; then
         echo_run ./bootstrap/jam0 -f build.jam --toolset=$BOOST_JAM_TOOLSET "--toolset-root=$BOOST_JAM_TOOLSET_ROOT" clean
     fi
-    echo_run ./bootstrap/jam0 -f build.jam --toolset=$BOOST_JAM_TOOLSET "--toolset-root=$BOOST_JAM_TOOLSET_ROOT" "$@"
+    if test -z "$BOOST_JAM_TOOLSET_ROOT"; then
+        echo_run ./bootstrap/jam0 -f build.jam --toolset=$BOOST_JAM_TOOLSET "$@"
+    else
+        echo_run ./bootstrap/jam0 -f build.jam --toolset=$BOOST_JAM_TOOLSET "--toolset-root=$BOOST_JAM_TOOLSET_ROOT" "$@"
+    fi
 fi
