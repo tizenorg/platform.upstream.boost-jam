@@ -7,6 +7,7 @@ Group:          Development/Tools/Building
 Source:         %{name}-%{version}.tar.xz
 # From http://boost.cvs.sourceforge.net/boost/boost/tools/jam/test/:
 Source2:        test.tar.gz 
+Source1001: 	boost-jam.manifest
 Url:            http://www.boost.org/
 BuildRequires:  xz
 
@@ -18,6 +19,7 @@ with Perforce Jam.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 find . -type f|xargs chmod -R u+w
 
 %build
@@ -41,6 +43,7 @@ ln -sf bjam-%{version} %{buildroot}%{_bindir}/bjam
 ln -sf bjam-%{version} %{buildroot}%{_bindir}/jam
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %attr(755,root,root) %{_bindir}/*
 
