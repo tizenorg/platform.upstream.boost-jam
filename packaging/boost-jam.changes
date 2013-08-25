@@ -1,0 +1,8 @@
+* Sun Aug 25 2013 Chengwei Yang <chengwei.yang@intel.com> accepted/tizen/20130710.221047@2e801cd
+- resetting manifest requested domain to floor
+- add packaging
+- jam0 use passed cflags
+- codec cleanup
+- cflags for build
+- Imported Upstream version 201104
+
